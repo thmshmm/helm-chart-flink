@@ -1,0 +1,6 @@
+dependencies:
+- name: minio
+  repository: https://kubernetes-charts.storage.googleapis.com
+  version: 5.0.17
+digest: sha256:cd2632e17136b082339056a98fac146c3ac701c024287c9eba58f1083d431213
+generated: "2020-03-21T20:00:06.075674+01:00"

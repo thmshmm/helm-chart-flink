@@ -1,0 +1,22 @@
+# Default values for flink.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+taskmanager:
+  replicaCount: 2
+
+image:
+  name: flink-custom:1.10.0-scala_2.12-1
+  pullPolicy: Never
+
+s3:
+  protocol: http
+  port: 9000
+  accessKey: AKIAIOSFODNN7EXAMPLE1
+  secretKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY1
+
+# Dependencies
+minio:
+  accessKey: AKIAIOSFODNN7EXAMPLE1
+  secretKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY1
+
