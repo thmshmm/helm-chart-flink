@@ -14,16 +14,21 @@ data:
     taskmanager.rpc.port: 6122
     jobmanager.heap.size: 1024m
     taskmanager.memory.process.size: 1024m
-    s3.endpoint: {{ .Values.s3.protocol }}://{{ .Release.Name }}-minio:{{ .Values.s3.port }}
+    high-availability: {{ .Values.ha.mode }}
+    high-availability.cluster-id: {{ .Release.Name }}
+    high-availability.storageDir: {{ .Values.ha.storageDir }}
+    high-availability.kubernetes.namespace: {{ .Values.ha.kubernetes.namespace }}
+    s3.endpoint: {{ .Values.s3.endpoint }}
     s3.path.style.access: true
     s3.access-key: {{ .Values.s3.accessKey }}
     s3.secret-key: {{ .Values.s3.secretKey }}
   log4j.properties: |+
-    log4j.rootLogger=INFO, file
+    log4j.rootLogger=DEBUG, file
     log4j.logger.akka=INFO
     log4j.logger.org.apache.kafka=INFO
     log4j.logger.org.apache.hadoop=INFO
     log4j.logger.org.apache.zookeeper=INFO
+    log4j.logger.org.apache.http=WARN
     log4j.appender.file=org.apache.log4j.FileAppender
     log4j.appender.file.file=${log.file}
     log4j.appender.file.layout=org.apache.log4j.PatternLayout

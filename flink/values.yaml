@@ -5,18 +5,19 @@
 taskmanager:
   replicaCount: 2
 
+ha:
+  # default: "NONE"
+  mode: de.thmshmm.flink.ha.k8s.KubernetesHAServicesFactory
+  storageDir: s3p://flink-ha/
+  kubernetes:
+    namespace: flink-ha
+
 image:
   name: flink-custom:1.10.0-scala_2.12-1
   pullPolicy: Never
 
 s3:
-  protocol: http
-  port: 9000
-  accessKey: AKIAIOSFODNN7EXAMPLE1
-  secretKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY1
-
-# Dependencies
-minio:
-  accessKey: AKIAIOSFODNN7EXAMPLE1
-  secretKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY1
+  endpoint: http://sunny-minio:9000
+  accessKey: AKIAIOSFODNN7EXAMPLE
+  secretKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 

@@ -10,9 +10,9 @@ $ docker build -t flink-custom:1.10.0-scala_2.12-1 docker/
 
 # Usage
 ## Helm
-### Download dependencies
+### Install dependencies
 ```
-$ helm dependency build flink/
+$ helm install sunny stable/minio --namespace <NAMESPACE> -f minio-values.yaml
 ```
 
 ### Create
@@ -34,7 +34,6 @@ $ helm delete --namespace <NAMESPACE> <NAME>
 ### MinIO
 Port-forward to localhost:
 ```
-$ $(kubectl get pods --namespace flink-ha -l "release=test" -o jsonpath="{.items[0].metadata.name}")
 $ kubectl port-forward $(kubectl get pods --namespace <NAMESPACE> -l "release=<NAME>" -o jsonpath="{.items[0].metadata.name}") 9000 --namespace <NAMESPACE>
 ```
 Access: http://localhost:9000
@@ -45,3 +44,4 @@ Port-forward to localhost:
 $ kubectl port-forward $(kubectl get pods --namespace <NAMESPACE> -l "release=<NAME>" -l "component=jobmanager" -o jsonpath="{.items[0].metadata.name}") 8081 --namespace <NAMESPACE>
 ```
 Access: http://localhost:8081
+

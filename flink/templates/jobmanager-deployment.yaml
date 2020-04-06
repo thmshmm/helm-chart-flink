@@ -8,6 +8,8 @@ spec:
     matchLabels:
       app: {{ .Release.Name }}-flink
       component: jobmanager
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -16,6 +18,7 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
+      terminationGracePeriodSeconds: 0
       containers:
       - name: jobmanager
         image: {{ .Values.image.name }}
@@ -49,8 +52,8 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 6123
-          initialDelaySeconds: 30
-          periodSeconds: 60
+          initialDelaySeconds: 10
+          periodSeconds: 20
         volumeMounts:
         - name: flink-config-volume
           mountPath: /opt/flink/conf
